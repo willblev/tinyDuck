@@ -1,18 +1,32 @@
+import argparse,os
+parser = argparse.ArgumentParser(
+add_help=True,
+description='A script which converts Rubber Ducky scripts into Arduino sketches to be run on the Digispark USB dev board (based on the ATtiny85).',
+epilog="Specify the path+filename of the Ducky script you wish to convert. By default, tinyDuck.py will create an output file with the same base name follwed by the .ino extension for Arduino sketches. Optionally you can specify the name of the output file with the '-out' parameter.")
+parser.add_argument('infile', help="Filename of the Ducky script to convert",type=str)
+parser.add_argument('--outfile', help="[optional] Filename of the output Arduino sketch", type=str)
+args = parser.parse_args()
+print("       ..---..") 
+print("     .'  _    `.       ==========")
+print(" __..'  (o)    :       -TINYDUCK-")
+print("`..__          ;       ==========")
+print("     `.       /")
+print("       ;      `..---...___")
+print("     .'                   `~-. .-')")
+print("    .          _              ' _.'")
+print("   :         =(.)__             :")
+print("   \          (___/            '")
+print("    +                         J")
+print("    `._                   _.'")
+print("        `~--....___...---~'")
 
-infile='/home/william/github/tinyDuck/ducky_script_example.txt'
-outfile='/home/william/github/tinyDuck/ducky_example_converted_v2.ino'
-decDictionary={'CTRL':'MOD_CONTROL_LEFT','SHIFT':'MOD_SHIFT_LEFT','ALT':'MOD_ALT_LEFT','GUI':'MOD_GUI_LEFT','CTRL':'MOD_CONTROL_RIGHT',
-'SHIFT':'MOD_SHIFT_RIGHT','ALT':'MOD_ALT_RIGHT','GUI':'MOD_GUI_RIGHT','CONTROL':'MOD_CONTROL_LEFT','WIN':'MOD_GUI_LEFT','CONTROL':'MOD_CONTROL_RIGHT',
-'WINDOWS':'MOD_GUI_RIGHT','END':77,'PAGEDN':78,'RIGHT':79,'LEFT':80,'DOWN':81,'UP':82,'NUMLOCK':83,'PAGEDOWN':78,'RIGHTARROW':79,'LEFTARROW':80,
-'DOWNARROW':81,'UPARROW':82,'1':30,'2':31,'3':32,'4':33,'5':34,'6':35,'7':36,'8':37,'9':38,'0':39,'ENTER':40,'ESC':41,'DEL':42,'TAB':43,
-'SPACE':44,'-':45,'=':46,'[':47,']':48,"\\":49,"#":50,';':51,"'":52,',':54,'0':55,"/":56,'CAPS':57,'F1':58,'F2':59,'F3':60,'F4':61,
-'F5':62,'F6':63,'F7':64,'F8':65,'F9':66,'F10':67,'F11':68,'F12':69,'PRNTSCRN':70,'SCRLLOCK':71,'PAUSE':72,'INSERT':73,'HOME':74,'PAGEUP':75,
-'A':4,'B':5,'C':6,'D':7,'E':8,'F':9,'G':10,'H':11,'I':12,'J':13,'K':14,'L':15,'M':16,'N':17,'O':18,'P':19,'Q':20,'R':21,'S':22,'T':23,
-'U':24,'V':25,'W':26,'X':27,'Y':28,'Z':29,'!':30,'@':31,'#':32,'$':33,'%':34,'^':35,'&':36,'*':37,'(':38,')':39,'ESCAPE':41,'DELETE':42,
-'_':45,'+':46,'{':47,'}':48,'|':49,'~':50,':':51,'"':52,'<':54,'>':55,'?':56,'CAPSLOCK':57,'FUNCTION1':58,'FUNCTION2':59,
-'FUCNTION3':60,'FUNCTION4':61,'FUNCTION5':62,'FUNCTION6':63,'FUNCTION7':64,'FUNCTION8':65,'FUNCTION9':66,'FUNCTION10':67,'FUNCTION11':68,'FUNCTION12':69,
-'PRINTSCREEN':70,'SCROLLLOCK':71,'BREAK':72,'INS':73}
-defaultDelay=100
+if not args.outfile:
+	baseName=os.path.splitext(args.infile)
+	output=baseName[0]+'.ino'
+elif args.out.endswith('.ino'):
+		output=args.outfile
+else:
+		output=args.outfile+'.ino'
 
 hexDictionary={
 '_':'0x2D','-':'0x2D',',':'0x36',';':'0x33',':':'0x33','!':'0x1E','?':'0x38',"'":'0x34','"':'0x34','(':'0x26',')':'0x27','[':'0x2F',']':'0x30','{':'0x2F','}':'0x30','@':'0x1F',
@@ -27,32 +41,41 @@ hexDictionary={
 'SPACE':'0x2C','T':'0x17','TAB':'0x2B','U':'0x18','UP':'0x52','UPARROW':'0x52','V':'0x19','W':'0x1A','WIN':'MOD_GUI_LEFT','WINDOWS':'MOD_GUI_RIGHT','X':'0x1B','Y':'0x1C','Z':'0x1D'}
 
 def convertLine(line):
-	'''Takes a line from the ducky script and parses it, then converts it to DigiSpark'''
-	
-	if line.startswith('STRING'):
+	'''Takes a line from the Ducky script file and parses it, then converts it to the equivalent line which will work for the DigiSpark'''
+	if line.startswith('STRING'):      # if line is a string, use DigiKeyboard.println
 		typeString=line.lstrip('STRING ').rstrip("\n")
 		output=("DigiKeyboard.println(\"%s\");\n" %(typeString))
-	elif line.startswith('REM'):
+	elif line.startswith('REM'):       # if line is a comment, use //
 		output=(line.replace('REM', '//')+"\n")
-	elif line.startswith('DELAY'):
+	elif line.startswith('DELAY'):     # if line is a delay, use DigiKeyboard.delay()
 		millis=int(line.split()[1])
 		output=("DigiKeyboard.delay(%d);\n" %(millis))
 	elif line.startswith('DEFAULT_DELAY') or line.startswith('DEFAULTDELAY'):
 		defaultDelay=int(line.split[1])				
-	else:
-		 keyStrokes=line.split()
-		 if len(keyStrokes)>1:
-			 keyMod=hexDictionary[keyStrokes[0]]
-			 key=hexDictionary[keyStrokes[1].upper()]
-			 output=("DigiKeyboard.sendKeyStroke(%s,%s);\n"%(key,keyMod))
-		 else:
-			 output=("DigiKeyboard.sendKeyStroke(%s);\n"%(hexDictionary[line.rstrip().upper()]))
+	else:                              # if line is keystroke, convert it to equivalent HID hex or DigiKeyboard defined string
+		keyStrokes=line.split()
+		if len(keyStrokes)>1:          # if there are multiple keystrokes (key + modifier) put them in correct format
+			try:
+				keyMod=hexDictionary[keyStrokes[0]]
+			except KeyError:
+				print("The key '%s' was not found in the dictionary of known keys." %(keyMod))
+			try:
+				key=hexDictionary[keyStrokes[1].upper()]
+			except KeyError:
+				print("The key '%s' was not found in the dictionary of known keys." %(key))
+			output=("DigiKeyboard.sendKeyStroke(%s,%s);\n"%(key,keyMod))		
+		else:
+			try:
+				output=("DigiKeyboard.sendKeyStroke(%s);\n"%(hexDictionary[line.rstrip().upper()]))
+			except KeyError:
+				print("The key '%s' was not found in the dictionary of known keys." %(line.rstrip().upper()))
 	return output
 			 				 
-with open(infile, 'r') as duckyScript:
-	with open(outfile, 'w') as tinyScript:
+with open(args.infile,'r') as duckyScript:
+	with open(output,'w') as tinyScript:
 		lastLine=''
-		tinyScript.write("#include <DigiKeyboard.h>\n")  # adds first lines to the file (including library, starting void setup
+		tinyScript.write("#include <DigiKeyboard.h>\n")  # adds first lines to the file (including library, starting void setup)
+		tinyScript.write("// Sketch was converted from USB Rubber Ducky script with tinyDuck by robil")
 		tinyScript.write("void setup() {\n")
 		tinyScript.write("DigiKeyboard.sendKeyStroke(0);\n")		
 		for line in duckyScript:
@@ -67,4 +90,4 @@ with open(infile, 'r') as duckyScript:
 
 		tinyScript.write("}\n")   # closes void setup
 		tinyScript.write("void loop() {}")
-
+		print("Converted the Ducky script '%s' into the Aruino sketch '%s'"%(args.infile,output))
