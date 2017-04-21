@@ -1,5 +1,5 @@
 /* 
-SOURCE: This script was adapted from gekom's DigiDucky script at:
+SOURCE: This script was adapted from gekom's example sketch which can be found at:
 https://github.com/geckom/DigiDucky/blob/master/digiducky_example.ino
 TARGET OS: Windows, Ubuntu
 NOTES: Opens the Start Menu, then enters URL of youtube video which should open in the default browser. Repeats every 1sec.
