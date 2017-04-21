@@ -1,7 +1,7 @@
 /* 
 SOURCE: This script was adapted from gekom's DigiDucky script at:
 https://github.com/geckom/DigiDucky/blob/master/digiducky_example.ino
-TARGET OS: Windows, Mac, Ubuntu
+TARGET OS: Windows, Ubuntu
 NOTES: Opens the Start Menu, then enters URL of youtube video which should open in the default browser. Repeats every 1sec.
 */
 
