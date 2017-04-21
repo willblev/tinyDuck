@@ -3,6 +3,7 @@ SOURCE: Adapted from DigiStump example that can be found here:
 https://github.com/digistump/DigistumpArduino/blob/master/digistump-avr/libraries/DigisparkKeyboard/examples/Keyboard/Keyboard.ino
 TARGET OS: Windows, Mac, Linux
 NOTES: Types 'Hello, World!'; repeats every 5 seconds. 
+*/
 #include "DigiKeyboard.h"
 
 void setup() {
