@@ -14,3 +14,18 @@ By default, tinyDuck.py will create a sketch (.ino) with the same base name as t
 
 **This code has only been tested and verified to work with simple Ducky scripts- if you find any bugs, please report them!**
 
+*Rubber Ducky Scripts:*
+https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Payloads
+
+*Convert Ducky scripts to Arduino sketches:*
+https://github.com/mame82/duck2spark
+https://pypi.python.org/pypi/digiduck
+https://github.com/geckom/DigiDucky
+https://hhoca.com/2016/10/02/poor-mans-rubber-ducky/
+
+*DigiSpark Ducky tutorials:*
+http://0xdeadcode.se/archives/581    
+https://hhoca.com/2016/10/02/poor-mans-rubber-ducky/
+http://www.redteamr.com/2016/08/digiducky/
+https://illlogicnet.wordpress.com/2016/09/20/digiexploit/
+
