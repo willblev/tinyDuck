@@ -1,9 +1,9 @@
-//*
+/*
 SOURCE: Adapted from shadowandy's example sketch that can be found here:
 https://www.shadowandy.net/2015/01/digispark-random-mouse-move-anti-screensaver.htm
 TARGET OS: Any (Windows, Mac, Linux)
 NOTES: Randomly move the mouse cursor every 2-5 seconds. 
-*//
+*/
 
 #include "DigiMouse.h"
 
