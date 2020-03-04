@@ -12,7 +12,7 @@ python tinyDuck.py  <Ducky_script_filename>
 ```
 By default, tinyDuck.py will create a sketch (.ino) with the same base name as the original Ducky file and in the same directory. Alternatively, you can specify the path/filename of the desired output with the '--out' parameter.
 
-**This code has only been tested and verified to work with simple Ducky scripts- if you find any bugs, please report them!**
+**This code has only been tested and verified to work with simple Ducky scripts**
 
 *Rubber Ducky Scripts:*
 https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Payloads
