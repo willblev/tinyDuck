@@ -48,6 +48,11 @@ jobs:
         uses: github/super-linter@v3
         env:
           VALIDATE_ALL_CODEBASE: false
-          DISABLE_ERRORS: true
           DEFAULT_BRANCH: master
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_BASH: true
+          VAILIDATE_BASH_EXEC: true
+          VALIDATE_PYTHON: true
+          VALIDATE_R: true
+          VALIDATE_MD: true
+          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          #DISABLE_ERRORS: true
