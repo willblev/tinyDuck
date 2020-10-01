@@ -15,17 +15,17 @@ By default, tinyDuck.py will create a sketch (.ino) with the same base name as t
 
 **This code has only been tested and verified to work with simple Ducky scripts**
 
-[*Rubber Ducky Scripts:*](https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Payloads)
+[*Rubber Ducky Scripts*](https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Payloads)
 
 *Convert Ducky scripts to Arduino sketches:*
-[duck2spark](https://github.com/mame82/duck2spark)
-[digiduck](https://pypi.python.org/pypi/digiduck)
-[DigiDucky](https://github.com/geckom/DigiDucky)
-[poor-mans-rubber-ducky](https://hhoca.com/2016/10/02/poor-mans-rubber-ducky/)
+- [duck2spark](https://github.com/mame82/duck2spark)
+- [digiduck](https://pypi.python.org/pypi/digiduck)
+- [DigiDucky](https://github.com/geckom/DigiDucky)
+- [poor-mans-rubber-ducky](https://hhoca.com/2016/10/02/poor-mans-rubber-ducky/)
 
 *DigiSpark Ducky tutorials:*
-[0xdeadcode](http://0xdeadcode.se/archives/581)    
-[hhoca](https://hhoca.com/2016/10/02/poor-mans-rubber-ducky/)
-[redteamr](http://www.redteamr.com/2016/08/digiducky/)
-[illlogicnet](https://illlogicnet.wordpress.com/2016/09/20/digiexploit/)
+- [0xdeadcode](http://0xdeadcode.se/archives/581)    
+- [hhoca](https://hhoca.com/2016/10/02/poor-mans-rubber-ducky/)
+- [redteamr](http://www.redteamr.com/2016/08/digiducky/)
+- [illlogicnet](https://illlogicnet.wordpress.com/2016/09/20/digiexploit/)
 
