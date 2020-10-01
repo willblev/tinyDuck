@@ -8,7 +8,7 @@ The [Digispark](http://digistump.com/products/1) is a multi-purpose development 
 
 ## Usage
 To convert a Ducky script into an Arduino sketch to be used on the Digispark, simply run the following:
-```
+```python
 python tinyDuck.py  <Ducky_script_filename>
 ```
 By default, tinyDuck.py will create a sketch (.ino) with the same base name as the original Ducky file and in the same directory. Alternatively, you can specify the path/filename of the desired output with the '--out' parameter.
