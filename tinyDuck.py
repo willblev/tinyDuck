@@ -91,3 +91,5 @@ with open(args.infile,'r') as duckyScript:
 		tinyScript.write("}\n")   # closes void setup
 		tinyScript.write("void loop() {}")
 		print("Converted the Ducky script '%s' into the Aruino sketch '%s'"%(args.infile,output))
+
+		
