@@ -92,5 +92,5 @@ with open(args.infile,'r') as duckyScript:
 		tinyScript.write("void loop() {}")
 		print("Converted the Ducky script '%s' into the Aruino sketch '%s'"%(args.infile,output))
 
-		
+print oops		
 		
