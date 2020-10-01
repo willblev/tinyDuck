@@ -1,6 +1,6 @@
 # tinyDuck
 
-A simple Python script which converts Ducky scripts into Arduino sketches for the Digispark. 
+A simple Python script which converts Ducky scripts into Arduino sketches for the Digispark.
 
 The [USB rubber ducky](http://usbrubberducky.com) is "*...a Human Interface Device programmable with a simple scripting language allowing penetration testers to quickly and easily craft and deploy security auditing payloads that mimic human keyboard input*". It has an 60 MHz 32-bit  processor as well as the option to store your code on a microSD card, making this little number fast, powerful, sexy, and deadly. It is available on the [Hak5 shop](http://hakshop.com)  and will set you back around $45 USD. They do fantastic work, so if you enjoy playing with tinyDuck, please consider buying a real Rubber Ducky!
 
@@ -24,8 +24,7 @@ By default, tinyDuck.py will create a sketch (.ino) with the same base name as t
 - [poor-mans-rubber-ducky](https://hhoca.com/2016/10/02/poor-mans-rubber-ducky/)
 
 *DigiSpark Ducky tutorials:*
-- [0xdeadcode](http://0xdeadcode.se/archives/581)    
+- [0xdeadcode](http://0xdeadcode.se/archives/581)
 - [hhoca](https://hhoca.com/2016/10/02/poor-mans-rubber-ducky/)
 - [redteamr](http://www.redteamr.com/2016/08/digiducky/)
 - [illlogicnet](https://illlogicnet.wordpress.com/2016/09/20/digiexploit/)
-
