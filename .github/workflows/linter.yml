@@ -49,4 +49,10 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: master
+          VALIDATE_BASH: true
+          VAILIDATE_BASH_EXEC: true
+          VALIDATE_PYTHON: true
+          VALIDATE_R: true
+          VALIDATE_MD: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          #DISABLE_ERRORS: true
