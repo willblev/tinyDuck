@@ -54,5 +54,5 @@ jobs:
           VALIDATE_PYTHON: true
           VALIDATE_R: true
           VALIDATE_MD: true
-          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           #DISABLE_ERRORS: true
