@@ -93,3 +93,4 @@ with open(args.infile,'r') as duckyScript:
 		print("Converted the Ducky script '%s' into the Aruino sketch '%s'"%(args.infile,output))
 
 		
+fi;
